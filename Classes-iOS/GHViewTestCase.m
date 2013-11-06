@@ -256,7 +256,9 @@
 - (void)verifyView:(UIView *)view filename:(NSString *)filename lineNumber:(int)lineNumber {
   // Fail if the view is nil
   if (!view) [[NSException ghu_failureInFile:filename atLine:lineNumber withDescription:@"View cannot be nil in GHVerifyView"] raise];
-
+    
+    [view layoutIfNeeded];
+    [view updateConstraintsIfNeeded];
   CGSize viewSize = [self sizeForView:view];
   view.frame = CGRectMake(0, 0, viewSize.width, viewSize.height);
 
